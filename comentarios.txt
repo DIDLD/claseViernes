@@ -1,0 +1,3 @@
+"Estoy desarrollando una API RESTful con FastAPI. Estoy implementando rutas para manejar peticiones HTTP y utilizando DTOs
+ para validar y estructurar
+ los datos de entrada y salida en cada operación, como crear, consultar o eliminar registros en la base de datos."
