@@ -1,9 +1,18 @@
-#PROBAR Y APRENDER PYTHON
+from fastapi import FastAPI
+from app.database.configuration import engine
+from app.api.models.modelosapp import Usuario
+from app.api.rutas import rutas
 
-nombre="Juan Jose"
-edad=35
 
-print("hola soy",nombre," Y tengo ",edad," años")
-print(f"hola soy {nombre} y tengo {edad} años ")
+from starlette.responses import RedirectResponse
 
-print("hola soy juan andres")
+
+#variable para administrar la aplicación
+app=FastAPI()
+
+#Activo el Api
+@app.get("/")
+def main():
+    return RedirectResponse(url="/docs")
+
+app.include_router(rutas)

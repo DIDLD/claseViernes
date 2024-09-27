@@ -5,7 +5,6 @@ from fastapi.params import Depends
 from app.api.schemas.DTO import UsuarioDTOPeticion, UsuarioDTORespuesta, GastoDTOPeticion, GastoDTORespuesta, CategoriaDTOPeticion, CategoriaDTORespuesta, MetodoPagoDTORespuesta, MetodoPagoDTOPeticion, FacturaDTOPeticion, FacturaDTORespuesta
 
 from app.api.models.modelosapp import Usuario, Gasto, Categoria, Factura, MetodoPago
-
 from app.database.configuration import sessionLocal, engine
 
 # Para que un api funcione debe tener un archivo enrutador
@@ -50,9 +49,20 @@ def guardarUsuario(datosPeticion: UsuarioDTOPeticion, db: Session = Depends(getD
         db.rollback()
         raise HTTPException()
 
-@rutas.get("/usuarios")  # mandar
-def buscarUsuario():
-    pass
+@rutas.get("/usuarios," response_model = List[UsuarioDTORespuesta])  # mandar
+def buscarUsuario(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
+    try:
+        listaDeUsuarios = db.query(Usuario).all() #Vamos a usar una lista, hacemos que haga una búsqueda en la base de datos y busque todo
+        return listaDeUsuarios
+
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException()
+
+
+
+
 
 # Servicio para registrar o guardar un gasto en BD
 @rutas.post("/gastos")
@@ -74,9 +84,18 @@ def guardarGasto(datosPeticion: GastoDTOPeticion, db: Session = Depends(getDatab
         db.rollback()
         raise HTTPException()
 
-@rutas.get("/gastos")  # mandar
-def buscarGasto():
-    pass
+@rutas.get("/gatos," response_model = List[UsuarioDTORespuesta])  # mandar
+def buscarGasto(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
+    try:
+        listaDeGastos = db.query(Gasto).all() #Vamos a usar una lista, hacemos que haga una búsqueda en la base de datos y busque todo
+        return listaDeGastos
+
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException()
+        
+
 
 # Servicio para registrar o guardar una categoría en BD
 @rutas.post("/categorias")  # Para coincidir con el modelo
@@ -96,12 +115,20 @@ def guardarCategoria(datosPeticion: CategoriaDTOPeticion, db: Session = Depends(
         db.rollback()
         raise HTTPException()
 
-@rutas.get("/categorias")  # mandar
-def buscarCategoria():
-    pass
+@rutas.get("/categorias," response_model = List[UsuarioDTORespuesta])  # mandar
+def buscarCategorias(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
+    try:
+        listaDeCategorias = db.query(Categoria).all() #Vamos a usar una lista, hacemos que haga una búsqueda en la base de datos y busque todo
+        return listaDeCategorias
+
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException()
+        
 
 # Servicio para registrar o guardar un método de pago en BD
-@rutas.post("/metodos-pago")  # Para coincidir con el modelo
+@rutas.post("/metodos_pago")  # Para coincidir con el modelo
 def guardarMetodoPago(datosPeticion: MetodoPagoDTOPeticion, db: Session = Depends(getDatabase())):
     try:
         metodo_pago = MetodoPago(
@@ -117,10 +144,17 @@ def guardarMetodoPago(datosPeticion: MetodoPagoDTOPeticion, db: Session = Depend
         db.rollback()
         raise HTTPException()
 
-@rutas.get("/metodos-pago")  # mandar
-def buscarMetodoPago():
-    pass
+@rutas.get("/metodos_pagos," response_model = List[UsuarioDTORespuesta])  # mandar
+def buscarMetodos_pagos(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
+    try:
+        listaDeMetodos_pagos = db.query(MetodoPago).all() #Vamos a usar una lista, hacemos que haga una búsqueda en la base de datos y busque todo
+        return listaDeMetodos_pagos
 
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException()
+        
 # Servicio para registrar o guardar una factura en BD
 @rutas.post("/facturas")  # Para coincidir con el modelo
 def guardarFactura(datosPeticion: FacturaDTOPeticion, db: Session = Depends(getDatabase())):
@@ -139,6 +173,14 @@ def guardarFactura(datosPeticion: FacturaDTOPeticion, db: Session = Depends(getD
         db.rollback()
         raise HTTPException()
 
-@rutas.get("/facturas")  # mandar
-def buscarFactura():
-    pass
+@rutas.get("/factura," response_model = List[UsuarioDTORespuesta])  # mandar
+def buscarFactura(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
+    try:
+        listaDeFactura = db.query(Factura).all() #Vamos a usar una lista, hacemos que haga una búsqueda en la base de datos y busque todo
+        return listaDeFactura
+
+
+    except Exception as error:
+        db.rollback()
+        raise HTTPException()
+        
