@@ -47,7 +47,7 @@ def guardarUsuario(datosPeticion: UsuarioDTOPeticion, db: Session = Depends(getD
     
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 @rutas.get("/usuarios," response_model = List[UsuarioDTORespuesta])  # mandar
 def buscarUsuario(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
@@ -58,7 +58,7 @@ def buscarUsuario(BD: Session = Depends(getDatabase)): # método buscar para hab
 
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 
 
@@ -82,7 +82,7 @@ def guardarGasto(datosPeticion: GastoDTOPeticion, db: Session = Depends(getDatab
     
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 @rutas.get("/gatos," response_model = List[UsuarioDTORespuesta])  # mandar
 def buscarGasto(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
@@ -93,7 +93,7 @@ def buscarGasto(BD: Session = Depends(getDatabase)): # método buscar para habla
 
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
         
 
 
@@ -113,7 +113,7 @@ def guardarCategoria(datosPeticion: CategoriaDTOPeticion, db: Session = Depends(
     
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 @rutas.get("/categorias," response_model = List[UsuarioDTORespuesta])  # mandar
 def buscarCategorias(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
@@ -124,7 +124,7 @@ def buscarCategorias(BD: Session = Depends(getDatabase)): # método buscar para 
 
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
         
 
 # Servicio para registrar o guardar un método de pago en BD
@@ -142,7 +142,7 @@ def guardarMetodoPago(datosPeticion: MetodoPagoDTOPeticion, db: Session = Depend
     
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 @rutas.get("/metodos_pagos," response_model = List[UsuarioDTORespuesta])  # mandar
 def buscarMetodos_pagos(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
@@ -153,7 +153,7 @@ def buscarMetodos_pagos(BD: Session = Depends(getDatabase)): # método buscar pa
 
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
         
 # Servicio para registrar o guardar una factura en BD
 @rutas.post("/facturas")  # Para coincidir con el modelo
@@ -171,7 +171,7 @@ def guardarFactura(datosPeticion: FacturaDTOPeticion, db: Session = Depends(getD
     
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
 
 @rutas.get("/factura," response_model = List[UsuarioDTORespuesta])  # mandar
 def buscarFactura(BD: Session = Depends(getDatabase)): # método buscar para hablar con la base de datos o establecer la conexión
@@ -182,5 +182,5 @@ def buscarFactura(BD: Session = Depends(getDatabase)): # método buscar para hab
 
     except Exception as error:
         db.rollback()
-        raise HTTPException()
+        raise HTTPException(status_code=400, detail="Error al registrar el usuario, mera gva")
         
